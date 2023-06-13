@@ -16,8 +16,10 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
-        screen.blit(bg_img, [-(tmr % 1600), 0])
+        bg = -(tmr % 1600)
+        screen.blit(bg_img, [bg, 0])
+        if bg < -800:
+            screen.blit(bg_img, [bg+1600, 0])
         kk = int(tmr / 5) % 20
         if kk > 10:
             kk = 20-kk
