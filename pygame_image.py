@@ -8,6 +8,7 @@ def main():
     clock  = pg.time.Clock()
     tmr = 0
     bg_img = pg.image.load("ex01-20230613/fig/pg_bg.jpg") #練習1
+    bg_img_r = pg.transform.flip(bg_img, True, False)
     kk_img = pg.image.load("ex01-20230613/fig/3.png")
     kk_img = pg.transform.flip(kk_img, True, False)
     kk_imgs = [kk_img, pg.transform.rotozoom(kk_img, 1, 1.0), pg.transform.rotozoom(kk_img, 2, 1.0), pg.transform.rotozoom(kk_img, 3, 1.0), pg.transform.rotozoom(kk_img, 4, 1.0), pg.transform.rotozoom(kk_img, 5, 1.0), pg.transform.rotozoom(kk_img, 6, 1.0), pg.transform.rotozoom(kk_img, 7, 1.0), pg.transform.rotozoom(kk_img, 8, 1.0), pg.transform.rotozoom(kk_img, 9, 1.0), pg.transform.rotozoom(kk_img, 10, 1.0)]
@@ -16,10 +17,12 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        bg = -(tmr % 1600)
+        bg = -(tmr % 3200)
         screen.blit(bg_img, [bg, 0])
-        if bg < -800:
-            screen.blit(bg_img, [bg+1600, 0])
+        if (bg < -800):
+            screen.blit(bg_img_r, [bg+1600, 0])
+            if bg < -2400:
+                screen.blit(bg_img, [bg+3200, 0])
         kk = int(tmr / 5) % 20
         if kk > 10:
             kk = 20-kk
